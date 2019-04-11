@@ -30,7 +30,7 @@ big = cv2.imread("images_to_compare/maxresdefault.jpg")
 
 images = []
 images_names = []
-for file in glob.glob("images/*.jpg"):
+for file in glob.glob("check/*.jpg"):
     images.append(cv2.imread(file))
     images_names.append(file)
 
@@ -126,14 +126,14 @@ if os.path.exists(same_imgs_dir):
         biggest_width = 0
         biggest_height = 0
         while j < len(same_imgs_list):
-            save_img_path = same_imgs_subdir + "/" + same_imgs_names_list[j].replace('images/', '')
+            save_img_path = same_imgs_subdir + "/" + same_imgs_names_list[j].replace('check/', '')
             save_img = same_imgs_list[j]
             #print('SAVE_IMG path = "%s"\n' % save_img_path)
             curr_height, curr_width = save_img.shape[:2]
             if(curr_width > biggest_width and curr_height > biggest_height):
                 biggest_width = curr_width
                 biggest_height = curr_height
-                biggest_img_name = same_imgs_names_list[j].replace('images/', '')
+                biggest_img_name = same_imgs_names_list[j].replace('check/', '')
                 biggest_img = save_img
             cv2.imwrite(save_img_path, save_img)
             j += 1
@@ -142,6 +142,8 @@ if os.path.exists(same_imgs_dir):
             cv2.imwrite(best_imgs_dir + "/" + biggest_img_name, biggest_img)
 
         i += 1
+
+        #Лабораторная выполнена и сдана
 else:
     print('Path "%s" does not exists!\n' % same_imgs_dir)
 
